@@ -37,7 +37,7 @@ import com.android.providers.contacts.util.PropertyUtils;
 public class CallLogDatabaseHelper {
     private static final String TAG = "CallLogDatabaseHelper";
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     private static final boolean DEBUG = false; // DON'T SUBMIT WITH TRUE
 
@@ -229,18 +229,19 @@ public class CallLogDatabaseHelper {
     }
 
     /**
-     * Add the {@link Calls.VIA_NUMBER} Column to the CallLog Database.
-     */
-    private void upgradeToVersion4(SQLiteDatabase db) {
-        db.execSQL("ALTER TABLE " + Tables.CALLS + " ADD " + CALLS_OPERATOR + " TEXT" + ";");  
-    }
-
-    /**
      * Add the {@link Status.SOURCE_TYPE} Column to the VoicemailStatus Database.
      */
     private void upgradeToVersion3(SQLiteDatabase db) {
         db.execSQL("ALTER TABLE " + Tables.VOICEMAIL_STATUS + " ADD " + Status.SOURCE_TYPE +
-                " TEXT");
+                " TEXT;");
+        db.execSQL("ALTER TABLE " + Tables.CALLS + " ADD " + CALLS_OPERATOR
+                + " TEXT;");
+    }
+
+    private void upgradeToVersion4(SQLiteDatabase db) {
+        // Intentionally empty. Lineage (pre cafrebase) had the version 4 schema, but
+        // never updated the database's user_version, so technically database version 3
+        // included what used to be here. Shit hax.
     }
 
     /**
