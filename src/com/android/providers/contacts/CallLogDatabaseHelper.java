@@ -152,8 +152,8 @@ public class CallLogDatabaseHelper {
                     Voicemails.TRANSCRIPTION + " TEXT," +
                     Voicemails.STATE + " INTEGER," +
                     Voicemails.DIRTY + " INTEGER NOT NULL DEFAULT 0," +
-                    Voicemails.DELETED + " INTEGER NOT NULL DEFAULT 0," +
                     CALLS_OPERATOR + " TEXT," +
+                    Voicemails.DELETED + " INTEGER NOT NULL DEFAULT 0," +
                     Voicemails.BACKED_UP + " INTEGER NOT NULL DEFAULT 0," +
                     Voicemails.RESTORED + " INTEGER NOT NULL DEFAULT 0," +
                     Voicemails.ARCHIVED + " INTEGER NOT NULL DEFAULT 0," +
